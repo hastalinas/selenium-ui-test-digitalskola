@@ -8,7 +8,7 @@ async function exampleTest() {
         await driver.get("https://www.google.com");
         
         // mencari di searchbox
-        let searchBox = await driver.findElement(By.name('q'))
+        let searchBox = await driver.findElement(By.xpath("//textarea[@id='APjFqb']"))
 
         // simulate user behavior typing hello world
         await searchBox.sendKeys("Hello world", Key.RETURN);
@@ -20,7 +20,7 @@ async function exampleTest() {
 
     } finally {
         // tutup browser
-        //await driver.quit()
+        await driver.quit()
     }
 }
 exampleTest();
