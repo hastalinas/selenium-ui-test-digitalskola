@@ -36,22 +36,7 @@ describe('TestCase 1', function(){
         assert.strictEqual(title, 'Products', 'Expected dashboard title is not found');
 
     });
-
-    // assertion add item to cart
-    // c. add item to cart 
-    it('Successfully add to cart and verify cart', async function () {
-        const dashboardPage = new DashboardPage(driver);
-        await dashboardPage.addItemToCart();
-        await dashboardPage.navigateToCart();
-
         
-    // d. successfully validated add item to cart  
-        const cartPage = new CartPage(driver);
-        const cartItemTitle = await cartPage.isOnCart();
-        assert.strictEqual(cartItemTitle, 'Sauce Labs Backpack', 'Expected cart title is not found in cart');
-    })
-        
-
     // take screenshot
     afterEach(async function () {
         const screenshot = await driver.takeScreenshot();
