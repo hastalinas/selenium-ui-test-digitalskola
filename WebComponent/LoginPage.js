@@ -1,16 +1,16 @@
-const { By } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver')
 
-class LoginPage{
-    constructor(driver) {
+class LoginPage {
+    constructor(driver){
         this.driver = driver;
-        this.usernameInput = By.id('user-name');
-        this.passwordInput = By.xpath("//input[@id='password']");
-        this.loginButton = By.xpath("//input[@id='login-button']"); 
-        this.errorMessage = By.css('.error-message-container');
+            this.usernameInput = By.id('user-name');
+            this.passwordInput = By.css('input[placeholder="Password"');
+            this.loginButton = By.xpath("//input[@id='login-button']");
+            this.errorMessage = By.css('.error-message-container');
     }
 
-    async navigate(){
-        await this.driver.get("https://saucedemo.com/");
+    async navigate(browser){
+        await this.driver.get(browser);
     }
 
     async login(username, password){
@@ -19,15 +19,14 @@ class LoginPage{
         await this.driver.findElement(this.loginButton).click();
     }
 
-    async getErrorMessage(){
-        try{
-            const errorElement = await this.driver.findElement(this.errorMessage);
+    async getErrorMessage() {
+        try {
+            const errorElement =  await this.driver.findElement(this.errorMessage);
             return await errorElement.getText();
-        } catch (err ){
-            return null; // tidak ada message
+        } catch (err) {
+            return null; //Tidak ada message
         }
     }
-
 }
 
 module.exports = LoginPage;
