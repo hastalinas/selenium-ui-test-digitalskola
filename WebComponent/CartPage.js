@@ -10,6 +10,12 @@ class CartPage{
         const cartItem = await this.driver.findElement(By.className('inventory_item_name'));
         return cartItem.getText()
     }
+
+    async clickCheckout(){
+        const checkoutButton = await this.driver.findElement(By.id('checkout'));
+        await checkoutButton.click()
+    }
+    
 }
 
 module.exports = CartPage;
