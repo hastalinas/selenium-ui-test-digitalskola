@@ -19,6 +19,7 @@ if(!fs.existsSync(screenshotDir)){
 describe('TestCase 3', function(){
     this.timeout(40000);
     let driver;
+    let options;
 
     switch(browser.toLowerCase()){
         case 'firefox':
@@ -50,28 +51,22 @@ describe('TestCase 3', function(){
     });
 
     // assertion atau validasi
-    // b. validate user in dashboard after login
     it('Login successfully and verify dashboard', async function () {
+         // b. validate user in dashboard after login
         const dashboardPage = new DashboardPage(driver);
         const title = await dashboardPage.isOnDashboard();
         assert.strictEqual(title, 'Products', 'Expected dashboard title is not found');
 
-    });
-
-    // assertion add item to cart
-    // c. add item to cart 
-    it('Successfully add to cart and verify cart', async function () {
-        const dashboardPage = new DashboardPage(driver);
+        //c. add item to cart
         await dashboardPage.addItemToCart();
         await dashboardPage.navigateToCart();
 
-        
-    // d. successfully validated add item to cart  
+        // d. successfully validated add item to cart  
         const cartPage = new CartPage(driver);
         const cartItemTitle = await cartPage.isOnCart();
         assert.strictEqual(cartItemTitle, 'Sauce Labs Backpack', 'Expected cart title is not found in cart');
-    })
-        
+
+    }); 
 
     // take screenshot
     afterEach(async function () {
@@ -79,7 +74,6 @@ describe('TestCase 3', function(){
         const filepath = `${screenshotDir}${this.currentTest.title.replace(/\s+/g, '_')}_${Date.now()}.png`
         fs.writeFileSync(filepath, screenshot, 'base64');
     });
-    
 
     after(async function () {
         await driver.quit();

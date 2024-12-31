@@ -9,6 +9,7 @@ const baseUrl = process.env.BASE_URL;
 describe('TestCase 2 [login] #Smoke', function () {
     this.timeout(40000);
     let driver;
+    let options;
 
     switch(browser.toLowerCase()){
         case 'firefox':

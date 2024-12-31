@@ -6,7 +6,7 @@ class DashboardPage {
     }
 
     async isOnDashboard() {
-       const title = await this.driver.findElement(By.className('app_logo'));
+       const title = await this.driver.findElement(By.className('title'));
         return title.getText();
     }
 

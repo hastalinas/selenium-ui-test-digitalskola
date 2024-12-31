@@ -24,7 +24,7 @@ class InformationPage {
         const postalCodeField = await this.driver.wait(until.elementLocated(this.postalCodeField), 5000);
         await postalCodeField.sendKeys(postalCode);
     
-        const continueButton = await this.driver.wait(until.elementLocated(By.xpath("//button[@id='checkout']")), 5000);
+        const continueButton = await this.driver.wait(until.elementLocated(By.id('continue')), 5000);
         await continueButton.click();
     }
 }

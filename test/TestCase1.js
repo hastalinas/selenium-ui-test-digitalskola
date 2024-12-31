@@ -18,6 +18,7 @@ if(!fs.existsSync(screenshotDir)){
 describe('TestCase 1 [login] #Regression #Smoke', function () {
     this.timeout(40000);
     let driver;
+    let options;
 
     switch(browser.toLowerCase()){
         case 'firefox':

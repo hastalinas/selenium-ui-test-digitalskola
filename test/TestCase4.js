@@ -5,6 +5,8 @@ const CartPage = require('../WebComponent/CartPage');
 const InformationPage = require('../WebComponent/InformationPage');
 const assert = require('assert');
 const fs = require('fs');
+const OverviewPage = require('../WebComponent/OverviewPage');
+const CompletePage = require('../WebComponent/CompletePage');
 require('dotenv').config();
 
 const browser = process.env.BROWSER;
@@ -54,15 +56,11 @@ describe('TestCase 4 [checkout]', function () {
     });
 
     // Tes: Login berhasil dan validasi dashboard
-    it('Login successfully and verify dashboard', async function () {
-        const dashboardPage = new DashboardPage(driver);
-        const title = await dashboardPage.isOnDashboard();
-        assert.strictEqual(title, 'Swag Labs', 'Expected dashboard title is not found');
-    });
-
-    // Tes: Berhasil menambahkan item ke keranjang dan validasi keranjang
     it('Successfully add to cart and verify cart', async function () {
         const dashboardPage = new DashboardPage(driver);
+        const title = await dashboardPage.isOnDashboard();
+        assert.strictEqual(title, 'Products', 'Expected dashboard title is not found');
+
         await dashboardPage.addItemToCart();
         await dashboardPage.navigateToCart();
 
@@ -71,10 +69,7 @@ describe('TestCase 4 [checkout]', function () {
         assert.strictEqual(cartItemTitle, 'Sauce Labs Backpack', 'Expected cart title is not found in cart');
 
         await cartPage.clickCheckout();
-    });
 
-    // Tes: Berhasil mengisi informasi checkout dan melanjutkan proses
-    it('Successfully fill information and complete checkout', async function () {
         const informationPage = new InformationPage(driver);
         const info = await informationPage.isOnInformation();
         assert.strictEqual(info, 'Checkout: Your Information', 'Expected information title is not found');
@@ -82,6 +77,20 @@ describe('TestCase 4 [checkout]', function () {
         // Mengisi informasi checkout
         await informationPage.fillInformation('John', 'Doe', '12345');
 
+        // Overview
+        const overviewPage = new OverviewPage(driver);
+        const overview = await overviewPage.isOnCheckout();
+        assert.strictEqual(overview, 'Checkout: Overview', 'Overview page not found');
+        
+        await overviewPage.validateAll(29.99, 2.40);
+
+        await overviewPage.clickFinish();
+
+        // Complete
+        const completePage = new CompletePage(driver);
+        const complete = await completePage.isOnComplete();
+        assert.strictEqual(complete, 'Thank you for your order!', 'Complete page is not found')
+    
     });
 
     // Ambil screenshot setelah setiap tes
