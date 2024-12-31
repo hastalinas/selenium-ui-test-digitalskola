@@ -40,17 +40,17 @@ class OverviewPage{
 
         // Validasi harga item
         if (itemPrice !== parseFloat(expectedPrice)) {
-            throw new Error(`Harga item tidak sesuai. Expected: ${expectedPrice}, Found: ${itemPrice}`);
+            throw new Error(`Item price not match. Expected: ${expectedPrice}, Found: ${itemPrice}`);
         }
 
         // Validasi pajak
         if (tax !== parseFloat(expectedTax)) {
-            throw new Error(`Pajak tidak sesuai. Expected: ${expectedTax}, Found: ${tax}`);
+            throw new Error(`Tax not match. Expected: ${expectedTax}, Found: ${tax}`);
         }
 
         // Validasi total harga
         if (calculatedTotal !== total) {
-            throw new Error(`Total harga tidak sesuai. Expected: ${calculatedTotal}, Found: ${total}`);
+            throw new Error(`Total not match. Expected: ${calculatedTotal}, Found: ${total}`);
         }
         return true; // Validasi berhasil
     }
