@@ -12,7 +12,7 @@ class CartPage{
     }
 
     async clickCheckout(){
-        const checkoutButton = await this.driver.findElement(By.id('checkout'));
+        const checkoutButton = await this.driver.findElement(By.xpath("//button[@id='checkout']"));
         await checkoutButton.click()
     }
     

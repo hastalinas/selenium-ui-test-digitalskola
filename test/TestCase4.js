@@ -17,7 +17,7 @@ if (!fs.existsSync(screenshotDir)) {
     fs.mkdirSync(screenshotDir, { recursive: true });
 }
 
-describe('TestCase 4', function () {
+describe('TestCase 4 [checkout]', function () {
     this.timeout(40000); // Timeout maksimum untuk setiap tes
     let driver;
     let options;
@@ -76,6 +76,8 @@ describe('TestCase 4', function () {
     // Tes: Berhasil mengisi informasi checkout dan melanjutkan proses
     it('Successfully fill information and complete checkout', async function () {
         const informationPage = new InformationPage(driver);
+        const info = await informationPage.isOnInformation();
+        assert.strictEqual(info, 'Checkout: Your Information', 'Expected information title is not found');
         
         // Mengisi informasi checkout
         await informationPage.fillInformation('John', 'Doe', '12345');
